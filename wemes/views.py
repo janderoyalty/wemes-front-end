@@ -1,21 +1,31 @@
-from .models import User, Transaction
+from .models import Item, Type, User, Transaction
 from rest_framework import viewsets, permissions
-from .serializers import UserSerializer, TransactionSerializer
+from .serializers import UserSerializer, TransactionSerializer, TypeSerializer, ItemSerializer
 
-from django.http import JsonResponse
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
+# from django.http import JsonResponse
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
+# from rest_framework import status
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by("id")
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_class = [permissions.IsAuthenticated]
 
 class TransactionViewSet(viewsets.ModelViewSet):
-    queryset = Transaction.objects.all().order_by("drop_off")
+    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+    permission_class = [permissions.IsAuthenticated]
+
+# class TypeViewSet(viewsets.ModelViewSet):
+#     queryset = Type.objects.all()
+#     serializer_class = TypeSerializer
+#     permission_class = [permissions.IsAuthenticated]
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
     permission_class = [permissions.IsAuthenticated]
 
     # @api_view(['PUT', 'DELETE'])

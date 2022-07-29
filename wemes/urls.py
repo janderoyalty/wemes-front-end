@@ -21,10 +21,12 @@ from wemes import views
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
 router.register(r"transactions", views.TransactionViewSet)
+router.register(r"items", views.ItemViewSet)
+# router.register(r"types", views.TypeViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include(router.urls)),
-    path('users/', include('rest_framework.urls', namespace='rest_framework')),
+    # path('users/', include('rest_framework.urls', namespace='rest_framework')),
     # path('transactions/', include('rest_framework.urls', namespace='rest_framework')),
 ]
