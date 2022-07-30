@@ -1,6 +1,6 @@
-from .models import Item, Type, User, Transaction
+from .models import Item, User, Transaction
 from rest_framework import viewsets, permissions
-from .serializers import UserSerializer, TransactionSerializer, TypeSerializer, ItemSerializer
+from .serializers import UserSerializer, TransactionSerializer, ItemSerializer
 
 # from django.http import JsonResponse
 # from rest_framework.decorators import api_view

@@ -14,8 +14,8 @@ class User(models.Model):
 
 class Transaction(models.Model):
     drop_off = models.DateTimeField(blank=True)
-    admin = models.ForeignKey(User,  related_name='customer', on_delete=models.SET_NULL, null=True)
-    customer = models.ForeignKey(User, related_name='user_admin', on_delete=models.SET_NULL, null=True)
+    admin = models.ForeignKey(User, related_name='user_admin', on_delete=models.SET_NULL, null=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="transactions")
 
     def __str__(self):
         return f"{self.admin} helped {self.customer}"
@@ -41,7 +41,7 @@ class Color(models.Model):
 class Item(models.Model):
     drop_off = models.DateTimeField(blank=True)
     due_off = models.DateTimeField(blank=True)
-    transaction = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, null=True, related_name="items")
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True)
