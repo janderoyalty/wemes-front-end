@@ -1,25 +1,27 @@
 from rest_framework import serializers
 from .models import *
 
-class ItemSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
-        fields = ['id', 'drop_off', 'due_off', 'transaction', 'type', 'department', 'color']
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'phone_num', 'last_four', 'email', 'admin', 'is_active', 'transactions']
 
 class TransactionSerializer(serializers.ModelSerializer):
-    items = ItemSerializer(read_only=True, many=True)
-
+    parent_lookup_kwargs = {
+        'user': 'user',
+    }
     class Meta:
         model = Transaction
         fields = ['id', 'drop_off', 'admin', 'customer', 'items']
 
-
-class UserSerializer(serializers.ModelSerializer):
-    transactions = TransactionSerializer(read_only=True, many=True)
-    
+class ItemSerializer(serializers.ModelSerializer):
+    parent_lookup_kwargs = {
+    'item': 'item_h',
+    'user': 'item_h__user',
+    }
     class Meta:
-        model = User
-        fields = ['id', 'first_name', 'last_name', 'phone_num', 'last_four', 'email', 'admin', 'is_active', 'transactions']
+        model = Item
+        fields = ['id', 'drop_off', 'due_off', 'transaction', 'type', 'department', 'color']
 
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:

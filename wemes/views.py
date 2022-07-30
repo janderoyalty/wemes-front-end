@@ -1,45 +1,51 @@
 from .models import Item, User, Transaction
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets
 from .serializers import UserSerializer, TransactionSerializer, ItemSerializer
-
-# from django.http import JsonResponse
-# from rest_framework.decorators import api_view
-# from rest_framework.response import Response
-# from rest_framework import status
-
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_class = [permissions.IsAuthenticated]
+    queryset = User.objects.filter()
+
+    def list(self, request):
+        queryset = User.objects.filter()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = User.objects.filter()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
 
 class TransactionViewSet(viewsets.ModelViewSet):
-    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
-    permission_class = [permissions.IsAuthenticated]
+    queryset = Transaction.objects.filter()
 
-# class TypeViewSet(viewsets.ModelViewSet):
-#     queryset = Type.objects.all()
-#     serializer_class = TypeSerializer
-#     permission_class = [permissions.IsAuthenticated]
+    def list(self, request, customer_pk=None):
+        queryset = Transaction.objects.filter(customer=customer_pk)
+        serializer = TransactionSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None, customer_pk=None):
+        queryset = Transaction.objects.filter(pk=pk, customer=customer_pk)
+        transaction = get_object_or_404(queryset, pk=pk)
+        serializer = TransactionSerializer(transaction)
+        return Response(serializer.data)
 
 class ItemViewSet(viewsets.ModelViewSet):
-    queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    permission_class = [permissions.IsAuthenticated]
+    queryset = Item.objects.filter()
 
-    # @api_view(['PUT', 'DELETE'])
-    # def user_details(request, pk):
-    #     try:
-    #         user = User.objects.get(pk=pk)
-        
-    #     except User.DoesNotExist:
-    #         return Response(status=status.HTTP_404_NOT_FOUND)
+    def list(self, request, customer_pk=None, transactions_pk=None):
+        queryset = Item.objects.filter(transaction__customer=customer_pk, transaction=transactions_pk)
+        serializer = ItemSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-    #     if request.method == 'PUT' or request.method == 'DELETE':
-    #         serializer = UserSerializer(user, data=request.data)
-    #         if serializer.is_valid():
-    #             serializer.save()
-    #             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    def retrieve(self, request, pk=None, customer_pk=None, transaction=None):
+        queryset = Item.objects.filter(pk=pk, transaction=transaction, transaction__customer=customer_pk)
+        item = get_object_or_404(queryset, pk=pk)
+        serializer = ItemSerializer(item)
+        return Response(serializer.data)
