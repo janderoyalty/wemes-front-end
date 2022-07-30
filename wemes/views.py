@@ -45,7 +45,6 @@ class ItemViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, **kwargs):
-        print(request, kwargs)
         queryset = Item.objects.filter(pk=kwargs['pk'], transaction=kwargs['transactions_pk'], transaction__customer=kwargs['customer_pk'])
         item = get_object_or_404(queryset, pk=kwargs['pk'])
         serializer = ItemSerializer(item)
