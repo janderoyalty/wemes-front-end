@@ -21,6 +21,8 @@ from wemes import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet, basename='users')
+router.register(r'transactions', views.TransactionViewSet, basename='transactions')
+router.register(r'items', views.ItemViewSet, basename='items')
 ## generates:
 # /users/
 # /users/{pk}/
