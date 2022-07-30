@@ -13,9 +13,9 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, **kwargs):
         queryset = User.objects.filter()
-        user = get_object_or_404(queryset, pk=pk)
+        user = get_object_or_404(queryset, pk=kwargs['pk'])
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
@@ -24,14 +24,14 @@ class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
     queryset = Transaction.objects.filter()
 
-    def list(self, request, customer_pk=None):
-        queryset = Transaction.objects.filter(customer=customer_pk)
+    def list(self, request, **kwargs):
+        queryset = Transaction.objects.filter(customer=kwargs['customer_pk'])
         serializer = TransactionSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None, customer_pk=None):
-        queryset = Transaction.objects.filter(pk=pk, customer=customer_pk)
-        transaction = get_object_or_404(queryset, pk=pk)
+    def retrieve(self, request, **kwargs):
+        queryset = Transaction.objects.filter(pk=kwargs['pk'], customer=kwargs['customer_pk'])
+        transaction = get_object_or_404(queryset, pk=kwargs['pk'])
         serializer = TransactionSerializer(transaction)
         return Response(serializer.data)
 
@@ -39,13 +39,14 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     queryset = Item.objects.filter()
 
-    def list(self, request, customer_pk=None, transactions_pk=None):
-        queryset = Item.objects.filter(transaction__customer=customer_pk, transaction=transactions_pk)
+    def list(self, request, **kwargs):
+        queryset = Item.objects.filter(transaction__customer=kwargs['customer_pk'], transaction=kwargs['transactions_pk'])
         serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None, customer_pk=None, transaction=None):
-        queryset = Item.objects.filter(pk=pk, transaction=transaction, transaction__customer=customer_pk)
-        item = get_object_or_404(queryset, pk=pk)
+    def retrieve(self, request, **kwargs):
+        print(request, kwargs)
+        queryset = Item.objects.filter(pk=kwargs['pk'], transaction=kwargs['transactions_pk'], transaction__customer=kwargs['customer_pk'])
+        item = get_object_or_404(queryset, pk=kwargs['pk'])
         serializer = ItemSerializer(item)
         return Response(serializer.data)
