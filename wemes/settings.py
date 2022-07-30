@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'wemes',
     'rest_framework',
+    'rest_framework_nested',
 
     'django.contrib.admin',
     'django.contrib.auth',
