@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_nested import routers
+from rest_framework import routers
+from rest_framework_nested import routers as n_routers
 from wemes import views
 
 
@@ -25,13 +26,13 @@ router.register(r'users', views.UserViewSet, basename='users')
 # /users/
 # /users/{pk}/
 
-user_router = routers.NestedSimpleRouter(router, r'users', lookup='user')
+user_router = n_routers.NestedSimpleRouter(router, r'users', lookup='user')
 user_router.register(r'transactions', views.TransactionViewSet, basename='transactions')
 ## generates:
 # /users/{user_pk}/transactions/
 # /users/{user_pk}/transactions/{pk}/
 
-transactions_router = routers.NestedSimpleRouter(user_router, r'transactions', lookup='transaction')
+transactions_router = n_routers.NestedSimpleRouter(user_router, r'transactions', lookup='transaction')
 transactions_router.register(r'items', views.ItemViewSet, basename='items')
 ## generates:
 # /users/{user_pk}/transactions/{transaction_pk}/items/
@@ -40,6 +41,6 @@ transactions_router.register(r'items', views.ItemViewSet, basename='items')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', include(router.urls)),
-    path(r'', include(user_router.urls)),
-    path(r'', include(transactions_router.urls)),
+    # path(r'', include(user_router.urls)),
+    # path(r'', include(transactions_router.urls)),
 ]
