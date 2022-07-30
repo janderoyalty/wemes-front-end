@@ -4,7 +4,7 @@ from .models import *
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'drop_off', 'due_off', 'transaction', 'type', 'department', 'color']
+        fields = ['id', 'drop_off', 'due_off', 'customer_id', 'transaction_id', 'type', 'department', 'color']
 
 class TransactionSerializer(serializers.ModelSerializer):
     items = ItemSerializer(read_only=True, many=True)

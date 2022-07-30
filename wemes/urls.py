@@ -14,19 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers
+from django.urls import path
 from wemes import views
+from .views import *
 
-router = routers.DefaultRouter()
-router.register(r"users", views.UserViewSet)
-router.register(r"transactions", views.TransactionViewSet)
-router.register(r"items", views.ItemViewSet)
-# router.register(r"types", views.TypeViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include(router.urls)),
-    # path('users/', include('rest_framework.urls', namespace='rest_framework')),
-    # path('transactions/', include('rest_framework.urls', namespace='rest_framework')),
+    path("users/", views.UserList.as_view(), name="users_list"),
+    path("transactions/", views.TranList.as_view(), name="trans_list"),
+    path("transactions/<int:pk>/items/", views.TransItemsList.as_view(), name="trans_detail"),
+    path("users/<int:pk>/", views.UserDetail.as_view(), name="user_detail"),
+    path("users/<int:pk>/transactions/", UserTransList.as_view(), name="transactions_list"),
 ]

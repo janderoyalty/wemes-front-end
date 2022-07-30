@@ -41,7 +41,8 @@ class Color(models.Model):
 class Item(models.Model):
     drop_off = models.DateTimeField(blank=True)
     due_off = models.DateTimeField(blank=True)
-    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, null=True, related_name="items")
+    customer_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="items")
+    transaction_id = models.ForeignKey(Transaction, on_delete=models.CASCADE, null=True, related_name="items")
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True)
