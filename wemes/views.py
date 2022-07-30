@@ -50,3 +50,5 @@ class ItemViewSet(viewsets.ModelViewSet):
         item = get_object_or_404(queryset, pk=kwargs['pk'])
         serializer = ItemSerializer(item)
         return Response(serializer.data)
+
+
