@@ -1,0 +1,163 @@
+// USERS
+{
+    "first_name": "James",
+    "last_name": "Jackson",
+    "phone_num": 7762669629,
+    "last_four": 9629,
+    "email": "",
+    "admin": true,
+    "is_active": true,
+    "transactions": []
+}
+{
+    "first_name": "Wende",
+    "last_name": "Jackson",
+    "phone_num": 2148972042,
+    "last_four": 2042,
+    "email": "thewende@jaw.com",
+    "admin": true,
+    "is_active": true,
+    "transactions": []
+}
+{
+    "first_name": "Wende",
+    "last_name": "Tate",
+    "phone_num": 4903719795,
+    "last_four": 9795,
+    "email": "wende@somewhere.org",
+    "admin": false,
+    "is_active": true,
+    "transactions": []
+}
+{
+    "first_name": "Jande",
+    "last_name": "Royalty",
+    "phone_num": 9681005954,
+    "last_four": 5954,
+    "email": "thejande@jaw.com",
+    "admin": true,
+    "is_active": true,
+    "transactions": []
+}
+{
+    "first_name": "David",
+    "last_name": "Crowder",
+    "phone_num": 5555555555,
+    "last_four": 5555,
+    "email": "must@day",
+    "admin": false,
+    "is_active": true,
+    "transactions": []
+}
+{
+    "first_name": "Hailey",
+    "last_name": "Mraz",
+    "phone_num": 333333333,
+    "last_four": 3333,
+    "email": "thehailey@mraz",
+    "admin": false,
+    "is_active": true,
+    "transactions": []
+}
+{
+    "first_name": "Dulcea",
+    "last_name": "Prettyman",
+    "phone_num": 7581968685,
+    "last_four": 8685,
+    "email": "dprettyman3@i2i.jp",
+    "admin": false,
+    "is_active": true,
+    "transactions": []
+}
+// trans
+{
+    "id": 1,
+    "drop_off": "2022-04-20",
+    "admin": 1,
+    "customer": 7,
+    "items": []
+}
+{
+    "id": 2,
+    "drop_off": "2022-07-04",
+    "admin": 2,
+    "customer": 7,
+    "items": []
+}
+{
+    "id": 3,
+    "drop_off": "2022-07-22",
+    "admin": 3,
+    "customer": 7,
+    "items": []
+}
+{
+    "id": 4,
+    "drop_off": "2022-08-31",
+    "admin": 4,
+    "customer": 7,
+    "items": []
+}
+{
+    "id": 5,
+    "drop_off": "2022-07-30",
+    "admin": 1,
+    "customer": 7,
+    "items": []
+}
+// items
+{
+    "id": 1,
+    "drop_off": "2022-07-30",
+    "due_off": "2022-08-04",
+    "transaction": 5,
+    "type": 1,
+    "color": 3,
+    "is_shoe": false,
+    "follow_up": false,
+    "description": "stitch hem"
+}
+{
+    "id": 2,
+    "drop_off": "2022-07-30",
+    "due_off": "2022-08-04",
+    "transaction": 5,
+    "type": 1,
+    "color": 2,
+    "is_shoe": true,
+    "follow_up": false,
+    "description": "1/2 soles"
+}
+{
+    "id": 3,
+    "drop_off": "2022-07-30",
+    "due_off": "2022-08-04",
+    "transaction": 5,
+    "type": 1,
+    "color": 8,
+    "is_shoe": true,
+    "follow_up": false,
+    "description": "full soles"
+}
+{
+    "id": 4,
+    "drop_off": "2022-07-30",
+    "due_off": "2022-08-04",
+    "transaction": 5,
+    "type": 1,
+    "color": 6,
+    "is_shoe": false,
+    "follow_up": false,
+    "description": ""
+}
+{
+    "id": 5,
+    "drop_off": "2022-07-30",
+    "due_off": "2022-08-04",
+    "transaction": 5,
+    "type": 1,
+    "color": 6,
+    "is_shoe": true,
+    "follow_up": false,
+    "description": "shine"
+}
