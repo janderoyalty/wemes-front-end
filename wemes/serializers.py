@@ -12,7 +12,7 @@ class TransactionSerializer(serializers.ModelSerializer):
     }
     class Meta:
         model = Transaction
-        fields = ['id', 'drop_off', 'admin', 'customer', 'items']
+        fields = ['id', 'drop_off', 'admin', 'customer', 'items', "description"]
 
 class ItemSerializer(serializers.ModelSerializer):
     parent_lookup_kwargs = {
@@ -21,11 +21,16 @@ class ItemSerializer(serializers.ModelSerializer):
     }
     class Meta:
         model = Item
-        fields = ['id', 'drop_off', 'due_off', 'transaction', 'type', 'department', 'color']
+        fields = ['id', 'drop_off', 'due_off', 'transaction', 'type', 'color', "is_shoe", "follow_up", "description"]
 
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Type
+        fields = ['id', 'name']
+
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Color
         fields = ['id', 'name']
 
 class DepartmentSerializer(serializers.ModelSerializer):
