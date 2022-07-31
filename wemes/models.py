@@ -3,8 +3,8 @@ from django.db import models
 class User(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    phone_num = models.IntegerField()
-    last_four = models.IntegerField()
+    phone_num = models.PositiveBigIntegerField(max_length = 10)
+    last_four = models.IntegerField(max_length=4)
     email = models.CharField(max_length=200, blank=True)
     admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

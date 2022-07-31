@@ -107,7 +107,6 @@
 }
 // items
 {
-    "id": 1,
     "drop_off": "2022-07-30",
     "due_off": "2022-08-04",
     "transaction": 5,
@@ -118,7 +117,6 @@
     "description": "stitch hem"
 }
 {
-    "id": 2,
     "drop_off": "2022-07-30",
     "due_off": "2022-08-04",
     "transaction": 5,
@@ -129,7 +127,6 @@
     "description": "1/2 soles"
 }
 {
-    "id": 3,
     "drop_off": "2022-07-30",
     "due_off": "2022-08-04",
     "transaction": 5,
@@ -140,7 +137,6 @@
     "description": "full soles"
 }
 {
-    "id": 4,
     "drop_off": "2022-07-30",
     "due_off": "2022-08-04",
     "transaction": 5,
@@ -151,7 +147,6 @@
     "description": ""
 }
 {
-    "id": 5,
     "drop_off": "2022-07-30",
     "due_off": "2022-08-04",
     "transaction": 5,
