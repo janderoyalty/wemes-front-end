@@ -1,3 +1,5 @@
+from datetime import datetime, time, timedelta
+
 from django.shortcuts import get_object_or_404
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
@@ -62,13 +64,33 @@ class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
     permission_class = [permissions.IsAuthenticated]
 
-class TransactionViewSet(viewsets.ModelViewSet):
-    queryset = Transaction.objects.all()
+class TransactionDateViewSet(viewsets.ModelViewSet):
+    queryset = Transaction.objects.filter()
     serializer_class = TransactionSerializer
     permission_class = [permissions.IsAuthenticated]
+
+    def current(self, request, **kwargs):
+        today = datetime.now().date()
+        print(today)
+        queryset = Transaction.objects.filter(pk=kwargs['pk'], transaction=kwargs['transactions_pk'], transaction__customer=kwargs['customer_pk'])
+        item = get_object_or_404(queryset, pk=kwargs['pk'])
+        serializer = TransactionSerializer(item)
+        return Response(serializer.data)
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    permission_class = [permissions.IsAuthenticated]
+
+
+class TypeViewSet(viewsets.ModelViewSet):
+    queryset = Type.objects.all()
+    serializer_class = TypeSerializer
+    permission_class = [permissions.IsAuthenticated]
+
+
+class ColorViewSet(viewsets.ModelViewSet):
+    queryset = Color.objects.all()
+    serializer_class = ColorSerializer
     permission_class = [permissions.IsAuthenticated]
 
