@@ -64,18 +64,18 @@ class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
     permission_class = [permissions.IsAuthenticated]
 
-class TransactionDateViewSet(viewsets.ModelViewSet):
-    queryset = Transaction.objects.filter()
-    serializer_class = TransactionSerializer
-    permission_class = [permissions.IsAuthenticated]
+# class TransactionDateViewSet(viewsets.ModelViewSet):
+#     queryset = Transaction.objects.filter()
+#     serializer_class = TransactionSerializer
+#     permission_class = [permissions.IsAuthenticated]
 
-    def current(self, request, **kwargs):
-        today = datetime.now().date()
-        print(today)
-        queryset = Transaction.objects.filter(pk=kwargs['pk'], transaction=kwargs['transactions_pk'], transaction__customer=kwargs['customer_pk'])
-        item = get_object_or_404(queryset, pk=kwargs['pk'])
-        serializer = TransactionSerializer(item)
-        return Response(serializer.data)
+#     def current(self, request, **kwargs):
+#         today = datetime.now().date()
+#         print(today)
+#         queryset = Transaction.objects.filter(pk=kwargs['pk'], transaction=kwargs['transactions_pk'], transaction__customer=kwargs['customer_pk'])
+#         item = get_object_or_404(queryset, pk=kwargs['pk'])
+#         serializer = TransactionSerializer(item)
+#         return Response(serializer.data)
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
