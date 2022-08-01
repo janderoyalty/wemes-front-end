@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 from rest_framework import routers
 from rest_framework_nested import routers as n_routers
 from wemes import views
@@ -44,3 +47,5 @@ urlpatterns = [
     path(r'', include(user_router.urls)),
     path(r'', include(transactions_router.urls)),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
